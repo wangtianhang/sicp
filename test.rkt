@@ -1,6 +1,5 @@
-;; The first three lines of this file were inserted by DrRacket. They record metadata
-;; about the language level of this file in a form that our tools can easily process.
-#reader(lib "htdp-advanced-reader.ss" "lang")((modname test) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #t #t none #f () #f)))
+#lang racket
+
 (define size 2)
 
 (define (square x)(* x x))
@@ -136,18 +135,23 @@
 (define (sum-integers a b)
        (sum identity a inc b)
        )
-
-  (define (pi-term x)
-    (/ 1.0 ( * x (+ x 2))))
-
-  (define (pi-next x)
-    (+ x 4))
-  
+;==============end=================
+;===========求pi====================
 (define (pi-sum a b)
+   (define (pi-next x)
+   (+ x 4))
+   (define (pi-term x)
+    (/ 1.0 ( * x (+ x 2))))
   (sum pi-term a pi-next b)
   )
 
 (define (piNew)
-  (* 8 (pi-sum 1 1000))
+  (* 8 (pi-sum 1 10000))
   )
 ;==============================
+;==========求积分,需要raknet支持闭包=============
+(define (integral f a b dx)
+  (define (add-dx x) (+ x dx))
+  (* (sum f (+ a (/ dx 2.0)) add-dx b)
+     dx))
+;============================
