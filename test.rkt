@@ -183,6 +183,10 @@
 
 ;(define one-through-four (list 1 2 3 4))
 ;one-through-four
+
+;===============end===============
+
+;============列表====================
 (define (list-ref items n)
   (if( = n 0)
      (car items)
@@ -203,4 +207,33 @@
       (cons (car list1) (append (cdr list1) list2))
       )
   )
-;===============end===============
+
+(define (map proc items)
+  (if (null? items)
+      null
+      (cons (proc (car items))
+            (map proc (cdr items)))
+      )
+  )
+;============end===============
+
+;===========树============
+(define (count-leaves x)
+  (cond ((null? x) 0)
+        ((not (pair? x)) 1)
+        (else (+ (count-leaves (car x))
+                 (count-leaves (cdr x))))
+        )
+  )
+
+;============end=====================
+
+;===========累加器=====================
+(define (accumulate op initial sequence)
+  (if (null? sequence)
+      initial
+      (op (car sequence)
+          (accumulate op initial (cdr sequence)))
+      )
+  )
+;=========end===============
