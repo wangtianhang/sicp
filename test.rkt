@@ -228,7 +228,8 @@
 
 ;============end=====================
 
-;===========累加器=====================
+;==========全排列======================
+
 (define (accumulate op initial sequence)
   (if (null? sequence)
       initial
@@ -236,4 +237,23 @@
           (accumulate op initial (cdr sequence)))
       )
   )
-;=========end===============
+
+(define (permutations s)
+  (if (null? s)
+      (list null)
+      (flatmap(lambda(x)
+               (map (lambda (p) (cons x p))
+                    (permutations (remove x s))
+                    )) 
+              s )
+      )
+  )
+
+(define (remove item sequence)
+  (filter (lambda (x) (not (= x item)))
+          sequence)
+  )
+
+(define (flatmap proc seq)
+  (accumulate append null (map proc seq)))
+;==========end======================
