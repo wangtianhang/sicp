@@ -130,4 +130,24 @@
 (define (sum-cubes a b)
   (sum cube a inc b)
   )
+
+;(define (identity x) x)
+
+(define (sum-integers a b)
+       (sum identity a inc b)
+       )
+
+  (define (pi-term x)
+    (/ 1.0 ( * x (+ x 2))))
+
+  (define (pi-next x)
+    (+ x 4))
+  
+(define (pi-sum a b)
+  (sum pi-term a pi-next b)
+  )
+
+(define (piNew)
+  (* 8 (pi-sum 1 1000))
+  )
 ;==============================
