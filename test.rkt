@@ -80,7 +80,7 @@
 (define (evenNew? n)
   (= (remainder n 2) 0)
   )
-;===========================
+;==============end=============
 
 ;==============最大公约数=============
 (define (gcdNew a b)
@@ -89,7 +89,7 @@
       (gcd b (remainder a b))
       )
   )
-;=================================
+;===============end==================
 
 ;===========素数判定============
 (define (smallest-divisor n )
@@ -110,7 +110,7 @@
 (define (prime? n)
   (= n (smallest-divisor n))
   )
-;=================================
+;=============end====================
 
 ;=========高阶函数抽象============
 (define (cube x) (* x x x))
@@ -136,6 +136,7 @@
        (sum identity a inc b)
        )
 ;==============end=================
+
 ;===========求pi====================
 (define (pi-sum a b)
    (define (pi-next x)
@@ -148,16 +149,35 @@
 (define (piNew)
   (* 8 (pi-sum 1 10000))
   )
-;==============================
+;=================end=============
+
 ;==========求积分,需要raknet支持闭包=============
 (define (integral f a b dx)
   (define (add-dx x) (+ x dx))
   (* (sum f (+ a (/ dx 2.0)) add-dx b)
      dx))
-;============================
+;=============end===============
 
 ;==========过程作为返回值================
 (define (average-damp f)
   (lambda (x) (average x (f x)))
   )
-;==============================
+;===============end===============
+
+;=============序对================
+(define (make-rat n d) (cons n d))
+
+(define (number x) (car x))
+
+(define (denom x) (cdr x))
+
+(define (print-rat x)
+  (newline)
+  (display (number x))
+  (display "/")
+  (display (denom x))
+  )
+
+;(define one-half (make-rat 1 2))
+;(print-rat one-half)
+;===============end===============
