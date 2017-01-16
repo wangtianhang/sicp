@@ -257,3 +257,14 @@
 (define (flatmap proc seq)
   (accumulate append null (map proc seq)))
 ;==========end======================
+
+;=========存储状态=================
+(define balance 100)
+
+(define (withdraw amount)
+  (if(>= balance amount)
+     (begin (set! balance (- balance amount)) balance)
+     "Insufficient funds"
+     )
+  )
+;==========end================
